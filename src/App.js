@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import { useMessages } from "./logic";
 
 function App() {
+  const messages = useMessages();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="messages">
+        {messages.map(({ text, id }) => (
+          <div className="message" key={id}>
+            <p>{text}</p>
+          </div>
+        ))}
+        <div className="message"></div>
+      </section>
+      <section className="typing-box">
+        <input className="typing-box__input"></input>
+        <button className="typing-box__send-button">Enviar</button>
+      </section>
     </div>
   );
 }
